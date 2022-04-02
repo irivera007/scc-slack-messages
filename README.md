@@ -21,7 +21,11 @@ The projects is a Google Cloud Function that is triggered by SCC Findings sent t
 
 ### Requirements
 
-SCC Notifications must be set up. That process is simplified using the related project https://github.com/gschaeffer/scc-alerts. 
+1. SCC Notifications must be set up. That process is simplified using the related project https://github.com/gschaeffer/scc-alerts. 
+2. Create slack app in slack workspace.
+	-Add scope = chat:write
+	-Install in workspace and generate token
+https://github.com/slackapi/python-slack-events-api/tree/main/example
 
 ### Installation
 
@@ -83,7 +87,7 @@ git clone https://github.com/gschaeffer/scc-slack-messages
 
 # Update the project id using the PROJECT var set above
 sed -i '' "s/PROJECT_ID/${PROJECT}/" deploy_func.sh
-
+# might want to add .strip() in main.py where the token is define it add '\n' when fetching from secrets manager
 # Deploy the Cloud Function
 ./deploy_func.sh
 ```
